@@ -6,7 +6,7 @@
 :root {
     --primary: #8B1E6B;
     --primary-dark: #6D1754;
-    --secondary: #FFD700;
+    --secondary: #D4AF37;
     --gradient-start: #2D0A3E;
     --gradient-end: #8B1E6B;
     --text-light: #FFFFFF;
@@ -83,6 +83,7 @@ img {
     color: var(--secondary);
     text-transform: uppercase;
     letter-spacing: 1px;
+    white-space: nowrap;
 }
 
 .nav-links {
@@ -172,21 +173,76 @@ img {
     text-align: center;
     padding: 2rem;
     background: linear-gradient(135deg, var(--gradient-start) 0%, var(--primary) 50%, var(--gradient-start) 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
     position: relative;
     overflow: hidden;
 }
 
+/* Animated gradient background */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Spotlight beams */
 .hero::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background:
-        radial-gradient(circle at 20% 80%, rgba(255, 215, 0, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(255, 215, 0, 0.1) 0%, transparent 50%);
+    top: -50%;
+    left: 50%;
+    width: 200px;
+    height: 200%;
+    background: linear-gradient(to bottom, rgba(255, 215, 0, 0.15), transparent 70%);
+    transform: translateX(-50%) rotate(-20deg);
+    animation: spotlightLeft 4s ease-in-out infinite alternate;
     pointer-events: none;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: 30%;
+    width: 150px;
+    height: 200%;
+    background: linear-gradient(to bottom, rgba(255, 215, 0, 0.1), transparent 60%);
+    transform: rotate(25deg);
+    animation: spotlightRight 5s ease-in-out infinite alternate;
+    pointer-events: none;
+}
+
+@keyframes spotlightLeft {
+    0% {
+        transform: translateX(-50%) rotate(-25deg);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: translateX(-50%) rotate(-15deg);
+        opacity: 1;
+    }
+}
+
+@keyframes spotlightRight {
+    0% {
+        transform: rotate(20deg);
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: rotate(30deg);
+        opacity: 0.7;
+    }
 }
 
 .hero-content {
@@ -210,15 +266,39 @@ img {
     margin-bottom: 1rem;
 }
 
+/* Shimmer text effect */
 .hero-title .highlight {
     color: var(--secondary);
-    text-shadow: 0 0 30px rgba(255, 215, 0, 0.5);
+    text-shadow:
+        0 0 30px rgba(255, 215, 0, 0.5),
+        0 0 60px rgba(255, 215, 0, 0.3);
+    background: linear-gradient(90deg,
+            var(--secondary) 0%,
+            #fff 40%,
+            #fff 60%,
+            var(--secondary) 100%);
+    background-size: 200% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
 }
 
 .hero-title .star {
     display: inline-block;
     color: var(--secondary);
-    animation: pulse 2s infinite;
+    -webkit-text-fill-color: var(--secondary);
+    animation: pulse 2s infinite, starGlow 1.5s ease-in-out infinite alternate;
 }
 
 @keyframes pulse {
@@ -230,6 +310,16 @@ img {
 
     50% {
         transform: scale(1.2);
+    }
+}
+
+@keyframes starGlow {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    100% {
+        text-shadow: 0 0 30px rgba(255, 215, 0, 1), 0 0 50px rgba(255, 215, 0, 0.5);
     }
 }
 
@@ -292,11 +382,15 @@ img {
 
 .section-dark {
     background: linear-gradient(135deg, var(--gradient-start), var(--primary));
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
 }
 
 .section-light {
-    background: var(--bg-section);
-    color: var(--gradient-start);
+    background: linear-gradient(135deg, var(--gradient-start), var(--primary));
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
+    color: var(--text-light);
 }
 
 .section-accent {
@@ -334,7 +428,7 @@ img {
 }
 
 .section-light .section-title::after {
-    background: var(--primary);
+    background: var(--secondary);
 }
 
 /* ---------- About Section ---------- */
@@ -384,19 +478,6 @@ img {
 
 .timeline-content p {
     color: var(--text-muted);
-}
-
-.section-light .timeline-content h3 {
-    color: var(--primary);
-}
-
-.section-light .timeline-content p {
-    color: var(--primary-dark);
-}
-
-.section-light .timeline-icon {
-    background: var(--primary);
-    color: var(--text-light);
 }
 
 /* ---------- Contact Section ---------- */
@@ -655,6 +736,14 @@ img {
 
 /* ---------- Mobile Responsive ---------- */
 @media (max-width: 768px) {
+    .nav-brand img {
+        height: 45px;
+    }
+
+    .nav-title {
+        display: none;
+    }
+
     .nav-links {
         position: fixed;
         top: 70px;
