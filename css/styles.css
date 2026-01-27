@@ -617,6 +617,76 @@ img {
     transform: scale(1.02);
 }
 
+/* ---------- Talent Category Cards ---------- */
+.talent-categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.5rem;
+}
+
+.talent-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    transition: var(--transition);
+}
+
+.talent-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--secondary);
+    transform: translateY(-5px);
+}
+
+.talent-header {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+}
+
+.talent-meta {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.talent-rules {
+    list-style: none;
+    margin-bottom: 1rem;
+}
+
+.talent-rules li {
+    padding: 0.3rem 0;
+    padding-left: 1.2rem;
+    position: relative;
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.talent-rules li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+}
+
+.talent-judging {
+    background: rgba(255, 215, 0, 0.1);
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: var(--secondary);
+    font-weight: 500;
+}
+
+.talent-judging::before {
+    content: '📊 Judged on: ';
+    opacity: 0.8;
+}
+
 /* ---------- Rules List ---------- */
 .rules-section {
     margin-bottom: 3rem;
@@ -648,6 +718,64 @@ img {
     color: var(--secondary);
     font-size: 1.5rem;
     line-height: 1;
+}
+
+/* ---------- Judging Criteria Grid ---------- */
+.criteria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.criteria-item {
+    background: rgba(255, 215, 0, 0.1);
+    padding: 1.5rem;
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    transition: var(--transition);
+}
+
+.criteria-item:hover {
+    background: rgba(255, 215, 0, 0.15);
+    transform: translateY(-3px);
+}
+
+.criteria-score {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--secondary);
+    margin-bottom: 0.5rem;
+}
+
+.criteria-label {
+    color: var(--text-light);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* ---------- Important Notice ---------- */
+.important-notice {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 107, 107, 0.2));
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    margin: 2rem 0;
+    border: 2px solid var(--secondary);
+}
+
+.important-notice h3 {
+    color: var(--secondary);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.important-notice p {
+    color: var(--text-light);
+    font-size: 1.2rem;
+    font-weight: 600;
 }
 
 /* ---------- Page Header (inner pages) ---------- */
